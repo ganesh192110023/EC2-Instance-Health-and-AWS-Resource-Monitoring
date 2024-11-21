@@ -1,0 +1,46 @@
+#!/bin/bash
+
+################
+#Author:Ganesh
+#Date:  21-11-2024
+#output:  This script will report node health and the list of aws resource usage services like ec2,s3,lambda functions,iam users
+###############
+set -x
+set -e
+set -o pipefail
+
+echo "prints the disk usage"
+df -h
+
+echo "Print the memory"
+free -h
+
+echo "no of processors used"
+nproc
+
+echo "no of process are used"
+ps -ef | grep
+
+echo "list the s3 buckets"
+aws s3 ls
+
+echo "list the ec2 instances"
+aws ec2 describe-instances
+
+echo "list lambda functions"
+aws lambda list-functions
+
+echo "list iam-users"
+aws iam list-users
+
+mail -s "AWS EC2 Report" your_email@example.com < /tmp/report.txt
+
+sudo apt-get install mailutils
+
+
+
+crontab -e
+
+0 8 * * * /path/to/your-script.sh
+
+crontab -l: List your cron jobs.
